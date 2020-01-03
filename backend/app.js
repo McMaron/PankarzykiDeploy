@@ -55,8 +55,7 @@ const main = async () => {
 
   // Routes
   //
-  app.use(express.static(path.join(__dirname, './../frontend/build')))
-  app.get('/*', (req, res)=> res.sendFile(path.join(__dirname,'./../frontend/build', 'index.html')))
+  
   app.use('/', routerHome);
   app.use('/api/register', routerRegister);
   app.use('/api/login', routerLogin);
@@ -67,6 +66,8 @@ const main = async () => {
   app.use('/api/matches', routerMatch);
   app.use('/api/user', routerUser);
   app.use('/api/division', routerDivision);
+  app.use(express.static(path.join(__dirname, './../frontend/build')))
+  app.get('/*', (req, res)=> res.sendFile(path.join(__dirname,'./../frontend/build', 'index.html')))
 
   app.use(errorHandler);
 
