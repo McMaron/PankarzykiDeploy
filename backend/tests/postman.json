@@ -1,0 +1,427 @@
+{
+  "info": {
+    "_postman_id": "09dd5de5-4958-47dd-9929-78d15421d6da",
+    "name": "TTFootball",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ae0cedf3-1e9f-4836-bb08-67a749fb0d0d",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-auth-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJVc2VyX1VzZXJfMCIsImlhdCI6MTU2OTM2NDg1M30.HbYcLyn1_OODNrCxaWrpRWC1YvWeK1jhAvWA8Bj_ibA",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/login/me/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "login", "me", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Get Teams",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "328c3ac5-6006-40ee-940b-710279949cd3",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-auth-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJMZWFndWVfVXNlcl8wIiwiaWF0IjoxNTY5MzY3NDU1fQ.TqEut2Pn8Deb6KsyMV5-kIBLw5Or_U7MOk-mbOkJyQc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users/Team_User_0/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "users", "Team_User_0", "teams"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "League get matches",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "328c3ac5-6006-40ee-940b-710279949cd3",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "c4a6b632-d9b8-4c5d-be80-88e803892660",
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/leagues/Match_League_0/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "leagues", "Match_League_0", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get match",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "328c3ac5-6006-40ee-940b-710279949cd3",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "9e635c19-d13b-4abb-ba62-f1665d6a1c2d",
+            "exec": [
+              "reqConfig = {",
+              "    url: 'http://localhost:8080/api/leagues/Match_League_0/matches',",
+              "    method: 'GET',",
+              "    header: 'Content-Type:application/json'",
+              "}",
+              "pm.sendRequest(reqConfig, function (err, response) {",
+              "    const resp = response.json();",
+              "    pm.variables.set(\"matchId\", resp[0]._id);",
+              "    ",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "x-auth-token",
+            "type": "text",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJMZWFndWVfVXNlcl8wIiwiaWF0IjoxNTY5MzY3NDU1fQ.TqEut2Pn8Deb6KsyMV5-kIBLw5Or_U7MOk-mbOkJyQc"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/matches/{{matchId}}/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "matches", "{{matchId}}", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7b91b132-c54d-4635-99cf-a1e3381bcf9b",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"email\":\"User_User_0@email.com\",\n\t\"password\":\"password\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/login/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "login", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "83c62edb-35a7-4b24-ba7e-a1ce551ad661",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"nickname\" : \"Unique_nickname\",\n\t\"email\": \"email@email.com\",\n\t\"password\": \"password\",\n\t\"division\": \"Division_Division_0\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/register/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "register", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create league",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "41e21f7f-01c0-46a9-acf5-2b576669a236",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-auth-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJMZWFndWVfVXNlcl8wIiwiaWF0IjoxNTY5MzY3NDU1fQ.TqEut2Pn8Deb6KsyMV5-kIBLw5Or_U7MOk-mbOkJyQc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\":\"Unique_league\",\n\t\"division\":\"League_Division_0\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/leagues/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "leagues", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Start league",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "328c3ac5-6006-40ee-940b-710279949cd3",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-auth-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJMZWFndWVfVXNlcl8wIiwiaWF0IjoxNTY5MzY3NDU1fQ.TqEut2Pn8Deb6KsyMV5-kIBLw5Or_U7MOk-mbOkJyQc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"start\":\"2019-11-28T15:11:35.951Z\",\n\t\"end\":\"2019-12-21T15:11:35.951Z\",\n\t\"rounds\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/leagues/League_League_0/start",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "leagues", "League_League_0", "start"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add match score",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "328c3ac5-6006-40ee-940b-710279949cd3",
+            "exec": ["pm.test(\"Status code is 200\", function () {", "    pm.response.to.have.status(200);", "});"],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ca48d130-e8e9-48ef-87c7-edc77dc199c5",
+            "exec": [
+              "reqConfig = {",
+              "    url: 'http://localhost:8080/api/leagues/Match_League_0/matches',",
+              "    method: 'GET',",
+              "    header: 'Content-Type:application/json'",
+              "}",
+              "pm.sendRequest(reqConfig, function (err, response) {",
+              "    const resp = response.json();",
+              "    const match = resp[0];",
+              "    pm.variables.set(\"matchId\", match._id);",
+              "    pm.variables.set(\"firstTeamId\", match.teams.first);",
+              "    pm.variables.set(\"secondTeamId\", match.teams.second);",
+              "    ",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-auth-token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJNYXRjaF9Vc2VyXzAiLCJpYXQiOjE1Njk2Mjc1MDF9.2xhRniLlTJdqgl389DWKAkPTOeRKdzIlnucg1oRxqSs",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"firstTeam\": {\n\t\t\"id\":\"{{firstTeamId}}\",\n\t\t\"goals\":\"10\"\n\t},\n\t\"secondTeam\": {\n\t\t\"id\":\"{{secondTeamId}}\",\n\t\t\"goals\":\"8\"\n\t}\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/matches/{{matchId}}/score",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "matches", "{{matchId}}", "score"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
