@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config ./backend/app.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "mon": "nodemon -r dotenv/config ./backend/app.js",
     "debug": "node inspect -r dotenv/config ./backend/app.js",
     "lint": "eslint --ignore-path .gitignore --fix .",
